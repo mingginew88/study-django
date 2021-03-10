@@ -29,8 +29,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# 모델을 이용하여 데이터베이스 테이블 생성을 하는 장고의 특성상 모델이 앱에 종속되어 있으므로 앱등록이 되어 있어야만 테이블 구성이 가능하다.
 INSTALLED_APPS = [
+    'board.apps.BoardConfig',    # 앱등록(board - apps 파일의 BoardConfig 클래스)
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
