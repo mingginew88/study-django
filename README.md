@@ -38,3 +38,9 @@ Using Python Django Web Framework, Create Sample Board.
 
 ### admin.py
  - admin.site.register(Post) 입력
+ 
+ 
+## templates 설정
+ - config 패키지의 settings.py에서 TEMPLATES 내 DIRS 수정 
+ - DIR 설정을 하지 않아도 기본으로 templates 패키지 경로를 찾아 내지만 적용 하는것이 좋음.
+ - 'DIRS' : [BASE_DIR / 'templates']
