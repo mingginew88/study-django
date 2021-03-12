@@ -2,23 +2,25 @@
 <!--django templates 공식문서-->
 <!--https://docs.djangoproject.com/en/3.0/topics/templates/-->
 
-<table>
-    <tr>
-        <td>번호</td>
-        <td>제목</td>
-        <td>내용</td>
-        <td>생성일</td>
-    </tr>
-{% if post_list %}
-    {% for post in post_list %}
+<div class="container my-3">
+    <table class="table">
         <tr>
-            <td>{{ post.id }}</td>
-            <td><a href="/board/{{ post.id }}/">{{ post.title }}</a></td>
-            <td>{{ post.content }}</td>
-            <td>{{ post.create_date }}</td>
+            <td>번호</td>
+            <td>제목</td>
+            <td>내용</td>
+            <td>생성일</td>
         </tr>
-    {% endfor %}
-{% else %}
-    <tr>질문이 없습니다.</tr>
-{% endif %}
-</table>
+    {% if post_list %}
+        {% for post in post_list %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td><a href="{% url 'post:detail' post.id %}">{{ post.title }}</a></td>
+                <td>{{ post.content }}</td>
+                <td>{{ post.create_date }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>질문이 없습니다.</tr>
+    {% endif %}
+    </table>
+</div>

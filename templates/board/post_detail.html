@@ -1,6 +1,25 @@
 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+
 <h1>{{ post.title }}</h1>
 
 <div>
     {{ post.content }}
 </div>
+<br><br>
+<div>{{ post.comment_set.count }}개의 답변이 있습니다.</div>
+<div>
+    <ul>
+    {% for comment in post.comment_set.all %}
+        <li>{{ comment.comment }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<form action="{% url 'post:create_comment' post.id %}" method="post">
+    {% csrf_token %} <!--보안 역할 : 전송된 데이터(답변)가 실제로 웹 브라우저에서 작성된 데이터인지 판단하는 검사-->
+    <input type="text" name="comment" id="comment">
+    <input type="submit" value="댓글등록">
+</form>
