@@ -1,8 +1,9 @@
 
 <!--django templates 공식문서-->
 <!--https://docs.djangoproject.com/en/3.0/topics/templates/-->
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+
+{% extends 'main/main.html' %}
+{% block content %}
 
 <div class="container my-3">
     <table class="table table-striped">
@@ -30,4 +31,8 @@
     {% endif %}
         </tbody>
     </table>
+
+     <a href="{% url 'post:create_post' %}" class="btn btn-primary">게시글 등록</a>
 </div>
+
+{% endblock %}

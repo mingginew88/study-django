@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse
 from django.views import generic
-from .models import Post
+from .models import Post, PostForm
 from django.utils import timezone
 
 
@@ -39,3 +39,22 @@ def create_comment(request, post_id):
     post.comment_set.create(comment=request.POST.get('comment'), create_date=timezone.now())
 
     return redirect('post:detail', post_id=post.id)
+
+
+# 게시글 작성
+def create_post(request):
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.create_date = timezone.now()
+            post.save()
+            return redirect('post:index')
+    else:
+        form = PostForm()
+
+    context = {'form': form}
+    return render(request, 'board/create_post.html', context)
+
+

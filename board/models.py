@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 
@@ -15,11 +16,25 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+# 게시글 등록
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+
+        # widgets = {
+        #     'title': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
+        # }
+
+        # labels = {
+        #     'title': '제목',
+        #     'content': '내용',
+        # }
+
 # 댓글
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment = models.TextField()
     create_date = models.DateTimeField()
-
-
 
