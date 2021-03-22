@@ -1,16 +1,22 @@
 
 <!--django templates 공식문서-->
 <!--https://docs.djangoproject.com/en/3.0/topics/templates/-->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
 
 <div class="container my-3">
-    <table class="table">
-        <tr>
-            <td>번호</td>
-            <td>제목</td>
-            <td>내용</td>
-            <td>생성일</td>
-        </tr>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <td>번호</td>
+                <td>제목</td>
+                <td>내용</td>
+                <td>생성일</td>
+            </tr>
+        </thead>
+
     {% if post_list %}
+        <tbody>
         {% for post in post_list %}
             <tr>
                 <td>{{ post.id }}</td>
@@ -22,5 +28,6 @@
     {% else %}
         <tr>질문이 없습니다.</tr>
     {% endif %}
+        </tbody>
     </table>
 </div>
