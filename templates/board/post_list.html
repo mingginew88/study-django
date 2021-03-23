@@ -21,7 +21,12 @@
         {% for post in post_list %}
             <tr>
                 <td>{{ post.id }}</td>
-                <td><a href="{% url 'post:detail' post.id %}">{{ post.title }}</a></td>
+                <td>
+                    <a href="{% url 'post:detail' post.id %}">{{ post.title }}</a>
+                    {% if post.comment_set.count > 0 %}
+                        <span class="text-danger medium ml-2">[{{ post.comment_set.count }}]</span>
+                    {% endif %}
+                </td>
                 <td>{{ post.content }}</td>
                 <td>{{ post.create_date }}</td>
             </tr>
