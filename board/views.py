@@ -6,11 +6,18 @@ from django.http import HttpResponse
 from django.views import generic
 from .models import Post, PostForm
 from django.utils import timezone
-
+from django.core.paginator import Paginator
 
 def index(request):
+
+    page = request.GET.get('page', '1')
+
     post_list = Post.objects.order_by('-create_date')
-    context = {'post_list': post_list}
+
+    paginator = Paginator(post_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+
+    context = {'post_list': page_obj}
 
     return render(request, 'board/post_list.html', context)
 
