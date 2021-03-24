@@ -8,26 +8,26 @@
 <div class="container my-3">
     <table class="table table-striped">
         <thead class="thead-dark">
-            <tr>
+            <tr class="text-center">
                 <td>번호</td>
                 <td>제목</td>
-                <td>내용</td>
-                <td>생성일</td>
+                <td>작성자</td>
+                <td>작성일</td>
             </tr>
         </thead>
 
     {% if post_list %}
         <tbody>
         {% for post in post_list %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ post.id }}</td>
-                <td>
+                <td class="text-left">
                     <a href="{% url 'post:detail' post.id %}">{{ post.title }}</a>
                     {% if post.comment_set.count > 0 %}
                         <span class="text-danger medium ml-2">[{{ post.comment_set.count }}]</span>
                     {% endif %}
                 </td>
-                <td>{{ post.content }}</td>
+                <td>{{ post.writer }}</td>
                 <td>{{ post.create_date }}</td>
             </tr>
         {% endfor %}
